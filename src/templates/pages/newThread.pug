@@ -1,0 +1,30 @@
+main.section
+  apollo-mutation(
+    :mutation="createThread"
+    :variables="{ title, id, body: postBody }"
+    @done="threadSuccess"
+    @error="threadError"
+    v-if="getLogin"
+  )
+    Toolbar(
+      :back="true"
+      title="New Thread"
+    )
+    div(
+      slot-scope="{ mutate }"
+      class="pure-form pure-form-stacked pure-u-1"
+    )
+      fieldset
+        input.pure-input-1(
+          id="title"
+          placeholder="Title"
+          type="text"
+          v-model="title"
+        )
+      fieldset.pure-1.thread-comment-box
+        textarea.textarea(
+          id="postBody"
+          resize="false"
+          v-model="postBody"
+        )
+      button(class="pure-button pure-button-primary pure-input-1" @click="newThread(mutate)") create Thread

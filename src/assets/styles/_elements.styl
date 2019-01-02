@@ -1,0 +1,63 @@
+*
+  box-sizing border-box
+  margin 0
+  padding 0
+  word-break break-word
+
+#app
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  background-color lighten(bg, 5%)
+  font-family 'Roboto', Helvetica, Arial, sans-serif
+  max-width 100%
+  text-align center
+
+.section
+  align-content flex-start
+  flex(flex-start, center)
+  margin auto
+  max-width 80rem
+  min-height 100vh
+  padding-top 3.5rem
+  position relative
+  width 95%
+  z-index 0
+  > div
+    width 100%
+  &.new-post
+    max-width unset
+    width 100%
+  &.-login
+    margin-top 0
+
+.link
+  color subtitleColor
+  cursor pointer
+  text-decoration none
+  transition all .25s
+  &:hover
+    color primary
+
+.pure-button
+  color white
+  background-color action
+  text-shadow .05rem .075rem rgba(black .5)
+
+.pure-button.-fixed
+  bottom 2.5rem
+  font-size 1.25rem
+  font-weight 400
+  position fixed
+  right 2.5rem
+
+.pure-form.-login,
+.pure-form.-signup,
+  max-width 45rem
+
+dd > .link
+  width 100%
+
+.pure-form-message
+  margin-bottom 1rem
+  text-align center
+  width 100%

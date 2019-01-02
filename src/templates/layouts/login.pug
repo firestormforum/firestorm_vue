@@ -1,0 +1,24 @@
+main.section.-login
+  h1.top-title Forum with Vue, TypeScript and GraphQL
+  form(
+    @submit.prevent="signin"
+    class="pure-form pure-form-stacked pure-u-1"
+    method="POST"
+  )
+    fieldset.pure-u-1
+      input.pure-u-1(
+        id="email"
+        placeholder="Email"
+        type="email"
+        v-model="email"
+      )
+    fieldset.pure-1
+      input.pure-u-1(
+        id="password"
+        placeholder="Password"
+        type="password"
+        v-model="password"
+      )
+    span.pure-form-message
+      router-link.link(to="/signup") Create account
+    button(class="pure-button pure-button-primary pure-input-1" type="submit") Sign in

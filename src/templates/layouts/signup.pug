@@ -1,0 +1,40 @@
+main.section
+  h1.top-title Signup
+  form(
+    @submit.prevent="signup"
+    class="pure-form pure-form-stacked pure-u-1"
+    method="POST"
+  )
+    fieldset.pure-1
+      input.pure-u-1(
+        id="name"
+        placeholder="Name"
+        type="text"
+        v-model="name"
+      )
+    fieldset.pure-u-1
+      input.pure-u-1(
+        id="email"
+        placeholder="Email"
+        type="email"
+        v-model="email"
+      )
+    fieldset.pure-1
+      input.pure-u-1(
+        id="password"
+        placeholder="Password"
+        type="password"
+        v-model="password"
+      )
+    fieldset.pure-u-1
+      input.pure-u-1(
+        id="username"
+        placeholder="Username"
+        type="text"
+        v-model="username"
+      )
+    fieldset
+      button(
+        class="pure-button pure-button-primary pure-input-1"
+        type="submit"
+      ) Sign up

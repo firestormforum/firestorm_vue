@@ -1,0 +1,30 @@
+.menu-top
+  background-color primary
+  box-shadow 0 .2rem .35rem rgba(black, .35)
+  left 0
+  position fixed
+  text-align left
+  top 0
+  width 100%
+  z-index 1
+  > .container
+    flex(center, space-between)
+    margin auto
+    max-width 80rem
+    width 95%
+    > .links
+      width calc(100% - 4rem)
+      > .link:first-child
+        margin-right .5rem
+    > .link,
+    > .links > .link
+      color white
+      cursor pointer
+      display inline-block
+      font-size 1.25rem
+      padding 1rem 0
+      transition all .25s
+      text-decoration none
+      text-shadow .05rem .035rem rgba(black, .75)
+    > .links > p.link
+      cursor unset

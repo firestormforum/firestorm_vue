@@ -1,0 +1,34 @@
+.thread-list
+  background-color white
+  border border_bottom
+  flex(flex-start, space-evenly)
+  list-style none
+  margin 1rem auto
+  position relative
+  text-align left
+  width 100%
+  > .thread
+    border-bottom border_bottom
+    cursor pointer
+    flex(flex-start, flex-start)
+    padding 1rem
+    transition all .25s
+    width 100%
+    &:hover
+      background-color lightgrey
+    &.-post,
+    &.-thread-post
+      border-bottom none
+    &.-thread-post
+      cursor unset
+    &.-thread-post:hover
+      background none
+    &.-category
+      @media(min-width: 35.5rem)
+        max-width 50%
+      @media(min-width: 64rem)
+        max-width 25%
+  &.-thread,
+  &.-posts
+    background-color transparent
+    border none

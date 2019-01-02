@@ -1,0 +1,37 @@
+main.section
+  ApolloQuery(
+    :query="threadQuery"
+    :variables="{ id: threadId }"
+    :skip="!threadId"
+    fetchPolicy="network-only"
+  )
+    template(slot-scope="{ result: { loading, error, data } }")
+      div(v-if="loading" class="loading apollo") Loading...
+      div(v-else-if="error" class="error apollo") An error occured
+      div(v-else-if="data" class="result apollo")
+        Toolbar(
+          :back="true"
+          :title="data.thread.title"
+        )
+        ul.thread-list.-thread
+          li.thread.-thread-post(
+            :key="post.id"
+            :id="post.id"
+            v-for="post of data.thread.posts"
+            v-if="data.thread.posts && data.thread.posts.length > 0"
+          )
+            div.thread-side.-post
+              Gravatar.icon.-gravatar(
+                :email="post.user.email"
+                :size="60"
+                default-img="mm"
+              )
+            section.thread-main.-post
+              header.thread-header
+                span.user {{ post.user.name }}
+                span.date {{ timeF.formatDate(post.insertedAt) }}
+              vue-markdown.markdown-style {{ post.body}}
+        router-link.pure-button.-fixed(
+          :to="`/categories/${data.thread.category.id}/threads/${data.thread.id}/new-post`"
+          v-if="getLogin"
+        ) New Post

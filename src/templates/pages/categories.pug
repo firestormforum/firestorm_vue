@@ -1,0 +1,46 @@
+main.section
+    Toolbar(
+      title="Categories"
+    )
+    apollo-mutation(
+      :mutation="newCategoryMutation"
+      :variables="{title}"
+      @done="categorySuccess"
+      @error="categoryError"
+      v-if="getLogin"
+    )
+      div.pure-form.-categories(slot-scope="{ mutate }")
+        input.input.pure-input-1(
+          id="title"
+          placeholder="Title"
+          type="text"
+          v-model="title"
+        )
+        button(class="pure-button pure-button-primary" @click="createCategory(mutate)") create Category
+    ul.thread-list(v-if="categories && categories.entries && categories.entries.length > 0")
+      li.thread(
+        @click="goToCategory(category.id)"
+        :key="category.id"
+        v-for="category of categories.entries"
+      )
+        div.thread-side
+          i.icon.fas.fa-tags
+        section.thread-main
+          header.thread-header {{ category.title }}
+      ul.st-pagination(v-if="categories.totalPages > 1")
+        li(v-if="page === 0")
+          i.page.fas.fa-angle-left
+        li(v-else)
+          a.link.page(@click="prevPage")
+            i.fas.fa-angle-left
+        li(v-for="pageNumber in categories.totalPages" :key="pageNumber")
+          a.link.page(:class="pageNumber === active && 'active'" @click="goToPage(pageNumber)") {{ pageNumber }}
+        li(v-if="page === categories.totalPages - 1")
+          i.page.fas.fa-angle-right
+        li(v-else)
+          a.link.page(@click="nextPage")
+            i.fas.fa-angle-right
+    ul.thread-list(v-else)
+      li.thread
+        section.thread-main
+          header.thread-header There aren't any records to display.

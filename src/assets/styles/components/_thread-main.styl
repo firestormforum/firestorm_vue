@@ -1,0 +1,26 @@
+.thread-main
+  margin auto
+  white-space pre-wrap
+  width calc(100% - 5rem)
+  > p
+    font-size 1.25rem
+    padding .25rem 0
+    width 100%
+  &.-post
+    background-color white
+    box-shadow 0rem .05rem .35rem rgba(black, .35)
+    border-radius: .5rem;
+    padding 1rem
+.thread-main-list
+  flex(flex-start, flex-start)
+  list-style none
+  width 100%
+  dt,
+  dd
+    font-size .75rem
+  dt
+    color titleColor
+    width 5rem
+  dd
+    color subtitleColor
+    width calc(100% - 5rem)
