@@ -4,10 +4,12 @@ import './assets/styles/app.styl'
 import {
   Mutation
 } from 'vuex-class'
+import template from './templates/App'
+
 
 @Component({
   name: 'app',
-  template: require('@/templates/App.pug')
+  render: template,
 })
 export default class App extends Vue {
   @Mutation('setLogin') setLogin
