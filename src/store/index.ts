@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import Vuex, { StoreOptions } from 'vuex';
-import { RootState } from './types';
-import { AppModule } from './AppModule';
+import Vue from 'vue'
+import Vuex, { StoreOptions } from 'vuex'
+import { RootState } from './types'
+import { AppModule } from './AppModule'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const store: StoreOptions<RootState> = {
   state: {

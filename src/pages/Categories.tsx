@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import Queries from '../graphql/Queries'
 import Mutations from '../graphql/Mutations'
-import Toolbar from '../components/Toolbar'
 import {
   Getter
 } from 'vuex-class'
+import CategoriesTemplate from '../templates/pages/categories'
 
 let Mutation = new Mutations()
 let Query = new Queries()
@@ -22,43 +22,34 @@ let Query = new Queries()
       },
       error (error) {
         console.error('We\'ve got an error!', error)
-      }
+      },
+      fetchPolicy: 'network-only'
     }
   },
-  components: {
-    Toolbar
-  },
   name: 'Categories',
-  template: require('../templates/pages/categories.pug')
 })
 export default class Categories extends Vue {
   @Getter('getLogin') getLogin: any
   active: number = 1
   page: number = 0
-  perPage: number = 10
+  perPage: number = 20
   categories: any = ''
   title: string = ''
   newCategoryMutation: any = Mutation.createCategory()
 
-  createCategory (mutate: any) {
-    if (this.title !== '') {
-      mutate()
-    } else {
-      alert('Name is required')
-    }
-  }
-
   categorySuccess (result: any) {
-    alert('Category created successfully!')
-    this.$apollo.queries.categories.refetch()
+    if (result.data.createCategory) {
+      alert('Category created successfully!')
+      this.$apollo.queries.categories.refetch()
+    }
   }
 
   categoryError (error: any) {
     console.log(error)
   }
 
-  goToCategory (categoryId: string) {
-    this.$router.push(`/categories/${categoryId}`)
+  goToCategory (categoryId) {
+    this.$router.push(`/categories/${categoryId}`);
   }
 
   prevPage () {
@@ -76,5 +67,34 @@ export default class Categories extends Vue {
   nextPage () {
     this.page = this.page + 1
     this.active = this.active + 1
+  }
+
+  render(h: any) {
+    return (
+      <CategoriesTemplate
+        class="section"
+        data={{
+          ...this.$data,
+          categories:
+            this.categories &&
+            this.categories.entries &&
+            this.categories.entries.length > 0
+              ? this.categories.entries
+              : [],
+          getLogin: this.getLogin,
+          totalPages: this.categories.totalPages
+        }}
+        methods={{
+          apollo: this.$apollo,
+          mutation: this.newCategoryMutation,
+          sucessHandler: this.categorySuccess,
+          errorHandler: this.categoryError,
+          prevPage: this.prevPage,
+          goToPage: this.goToPage,
+          nextPage: this.nextPage,
+          routeHandler: this.goToCategory
+        }}
+      />
+    )
   }
 }
