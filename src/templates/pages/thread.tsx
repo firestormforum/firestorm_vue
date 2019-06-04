@@ -1,9 +1,9 @@
-import Toolbar from "../../components/Toolbar"
+import Toolbar from '../../components/Toolbar'
 import PostsList from '../components/list'
 
 export default ({ props }: any) => {
   return (
-    <main class="section">
+    <main class='section'>
       <Toolbar back title={props.data.thread.title}/>
       <PostsList
         list={props.data.posts}
@@ -11,7 +11,7 @@ export default ({ props }: any) => {
       />
       {props.data.getLogin && (
         <routerLink
-          class="pure-button -fixed"
+          class='pure-button -fixed'
           to={`/categories/${props.data.thread.category.id}/threads/${props.data.thread.id}/new-post`}
         >
           New Post

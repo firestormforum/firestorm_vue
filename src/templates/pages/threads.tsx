@@ -12,12 +12,12 @@ export default ({ props, data, children }: any) => {
       />
       {props.data.getLogin && (
         <routerLink
-          class="pure-button -fixed"
+          class='pure-button -fixed'
           to={`/categories/${props.data.category.id}/new-thread/`}
         >
           New Thread
         </routerLink>
       )}
     </main>
-  );
-};
+  )
+}

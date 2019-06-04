@@ -4,22 +4,22 @@ import Queries from '../graphql/Queries'
 import { Getter } from 'vuex-class'
 import vueMarkdown from 'vue-markdown'
 import ThreadTemplate from '../templates/pages/thread'
-let Query = new Queries()
+const Query = new Queries()
 
 @Component({
   apollo: {
     thread: {
       query: Query.thread,
-      variables() {
+      variables () {
         return {
           id: this.threadId
         }
       },
-      skip() {
-        return !this.threadId;
+      skip () {
+        return !this.threadId
       },
-      error(error) {
-        console.error("We've got an error!", error)
+      error (error) {
+        console.log(`We've got an error!`, error)
       },
       fetchPolicy: 'network-only'
     }
@@ -27,16 +27,16 @@ let Query = new Queries()
   components: {
     vueMarkdown
   },
-  name: "thread",
+  name: 'thread',
   props: {
     threadId: String
   }
 })
 export default class Thread extends Vue {
-  @Getter("getLogin") getLogin: any
+  @Getter('getLogin') getLogin: any
   thread: any
 
-  render(h: any) {
+  render (h: any) {
     if (this.thread) {
       return (
         <ThreadTemplate

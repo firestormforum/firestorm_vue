@@ -11,19 +11,19 @@ import ToolbarTemplate from '../templates/components/toolbar'
   }
 })
 export default class Toolbar extends Vue {
-  @Getter("getLogin") getLogin: any;
+  @Getter('getLogin') public getLogin: any
 
-  logout() {
-    localStorage.removeItem("token");
-    this.$router.push("/login");
-    alert("See you soon :)");
+  public logout () {
+    localStorage.removeItem('token')
+    this.$router.push('/login')
+    alert('See you soon :)')
   }
 
-  goBack() {
-    this.$router.go(-1);
+  public goBack () {
+    this.$router.go(-1)
   }
 
-  render(h: any) {
+  public render (h: any) {
     return (
       <ToolbarTemplate
         data={{
@@ -35,6 +35,6 @@ export default class Toolbar extends Vue {
           logoutHandler: this.logout
         }}
       />
-    );
+    )
   }
 }

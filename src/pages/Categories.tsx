@@ -7,8 +7,8 @@ import {
 } from 'vuex-class'
 import CategoriesTemplate from '../templates/pages/categories'
 
-let Mutation = new Mutations()
-let Query = new Queries()
+const Mutation = new Mutations()
+const Query = new Queries()
 
 @Component({
   apollo: {
@@ -21,12 +21,12 @@ let Query = new Queries()
         }
       },
       error (error) {
-        console.error('We\'ve got an error!', error)
+        console.log(`We've got an error!`, error)
       },
       fetchPolicy: 'network-only'
     }
   },
-  name: 'Categories',
+  name: 'Categories'
 })
 export default class Categories extends Vue {
   @Getter('getLogin') getLogin: any
@@ -49,7 +49,7 @@ export default class Categories extends Vue {
   }
 
   goToCategory (categoryId) {
-    this.$router.push(`/categories/${categoryId}`);
+    this.$router.push(`/categories/${categoryId}`)
   }
 
   prevPage () {
@@ -69,10 +69,10 @@ export default class Categories extends Vue {
     this.active = this.active + 1
   }
 
-  render(h: any) {
+  render (h: any) {
     return (
       <CategoriesTemplate
-        class="section"
+        class='section'
         data={{
           ...this.$data,
           categories:
@@ -82,7 +82,7 @@ export default class Categories extends Vue {
               ? this.categories.entries
               : [],
           getLogin: this.getLogin,
-          totalPages: this.categories.totalPages
+          totalPages: this.categories ? this.categories.totalPages : 0
         }}
         methods={{
           apollo: this.$apollo,

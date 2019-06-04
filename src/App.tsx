@@ -4,18 +4,18 @@ import './assets/styles/app.styl'
 import {
   Getter, Mutation
 } from 'vuex-class'
-import Toolbar from "./components/Toolbar";
+import Toolbar from './components/Toolbar'
 
 @Component({
   name: 'app',
   render (h) {
     return (
-      <div id="app">
+      <div id='app'>
         <Toolbar oculted />
         <router-view />
       </div>
-    );
-  },
+    )
+  }
 })
 export default class App extends Vue {
   @Getter('getLogin') getLogin: any

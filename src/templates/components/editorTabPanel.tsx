@@ -2,7 +2,7 @@
 export default ({ props, children }: any) => {
 
   return (
-    <ul class="tab-panel">
+    <ul class='tab-panel'>
       <li
         class={`tab ${!props.preview && 'active'}`}
         onClick={() => props.showPreview()}

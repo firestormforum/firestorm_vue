@@ -5,10 +5,10 @@ import Mutations from '../graphql/Mutations'
 import { Prop } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
 import NewPostTemplate from '../templates/pages/newPost'
-let Mutation = new Mutations()
+const Mutation = new Mutations()
 
 @Component({
-  name: "newPost",
+  name: 'newPost',
   components: {
     VueMarkdown
   }
@@ -18,20 +18,21 @@ export default class NewPost extends Vue {
   threadId!: string
   @Prop()
   id!: string
-  @Getter("getLogin") getLogin: any
-  postBody: string = ""
+  @Getter('getLogin') getLogin: any
+  postBody: string = ''
   preview: boolean = false
 
-  postSuccess(result: any) {
-    if (result.data.createPost)
+  postSuccess (result: any) {
+    if (result.data.createPost) {
       this.$router.push(`/categories/${this.id}/threads/${this.threadId}`)
+    }
   }
 
-  postError(error: any) {
+  postError (error: any) {
     console.log(error)
   }
 
-  getPostBody(postBody) {
+  getPostBody (postBody) {
     this.postBody = postBody
   }
 
@@ -44,7 +45,7 @@ export default class NewPost extends Vue {
   }
 
   mutate () {
-    if (this.postBody !== "") {
+    if (this.postBody !== '') {
       this.$apollo.mutate({
         variables: {
           body: this.postBody,
@@ -52,22 +53,22 @@ export default class NewPost extends Vue {
         },
         mutation: Mutation.createPost()
       })
-      .then(result => {
+      .then((result) => {
         if (result.data.createPost) {
           this.postSuccess(result)
         }
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.graphQLErrors) {
           this.postError(error)
         }
       })
     } else {
-      alert("Post can't be blank")
+      alert(`Post can't be blank`)
     }
   }
 
-  render(h: any) {
+  render (h: any) {
     return (
       <NewPostTemplate
         data={{
@@ -81,22 +82,22 @@ export default class NewPost extends Vue {
         }}
       >
         {!this.preview ? (
-          <div class="thread-comment-box">
+          <div class='thread-comment-box'>
             <textarea
-              class="textarea"
-              id="postBody"
-              placeholder="Please be friendly..."
+              class='textarea'
+              id='postBody'
+              placeholder='Please be friendly...'
               vModel={this.postBody}
             />
             <button
-              class="pure-button -fixed pure-button-primary input"
+              class='pure-button -fixed pure-button-primary input'
               onClick={() => this.mutate()}
             >
               New Post
             </button>
           </div>
         ) : (
-            <vue-markdown class="markdown-style -padding">
+            <vue-markdown class='markdown-style -padding'>
               {this.postBody}
             </vue-markdown>
           )}

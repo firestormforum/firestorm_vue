@@ -17,7 +17,7 @@ export default [
             component: () => import('../pages/Threads'),
             name: 'allThreads',
             path: '',
-            props: true,
+            props: true
           },
           {
             path: '/categories/:id/threads/:threadId',

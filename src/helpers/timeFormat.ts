@@ -1,11 +1,11 @@
 import moment from 'moment'
 
-export default class timeFormat {
+export default class TimeFormat {
   // Users
-  formatDate (date: string) {
+  public formatDate (date: string) {
     if (date) {
-      let longDate: any = moment(date)
-      return moment(longDate['_d']).format("MM-DD-YYYY hh:mm")
+      const longDate: any = moment(date)
+      return moment(longDate['_d']).format('MM-DD-YYYY hh:mm')
     }
   }
 }

@@ -1,37 +1,37 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Mutations from '../graphql/Mutations'
-import VueMarkdown from "vue-markdown"
+import VueMarkdown from 'vue-markdown'
 import {
   Getter
 } from 'vuex-class'
-import NewThreadTemplate from "../templates/pages/newThread"
+import NewThreadTemplate from '../templates/pages/newThread'
 
-let Mutation = new Mutations()
+const Mutation = new Mutations()
 
 @Component({
-  name: "newThread",
+  name: 'newThread',
   components: {
     VueMarkdown
   }
 })
 export default class NewThread extends Vue {
   @Prop()
-  public id!: number
-  @Getter("getLogin") getLogin: any
-  title: string = ""
-  postBody: any = ""
+  id!: number
+  @Getter('getLogin') getLogin: any
+  title: string = ''
+  postBody: any = ''
   preview: boolean = false
 
-  showPreview() {
+  showPreview () {
     this.preview = false
   }
 
-  showEditor() {
+  showEditor () {
     this.preview = true
   }
 
-  mutate() {
-    if (this.title !== "" && this.postBody !== "") {
+  mutate () {
+    if (this.title !== '' && this.postBody !== '') {
       this.$apollo
         .mutate({
           variables: {
@@ -41,33 +41,33 @@ export default class NewThread extends Vue {
           },
           mutation: Mutation.createThread()
         })
-        .then(result => {
+        .then((result) => {
           this.threadSuccess(result)
         })
-        .catch(error => {
+        .catch((error) => {
           if (error.graphQLErrors) {
             this.threadError(error)
           }
         })
     } else {
       alert(
-        `Error, empty fields: ${this.title === "" &&
-          `Title can't be blank`}. ${this.postBody === "" &&
+        `Error, empty fields: ${this.title === '' &&
+          `Title can't be blank`}. ${this.postBody === '' &&
           `Post can't be blank`} `
       )
     }
   }
 
-  threadSuccess(result: any) {
-    alert("Thread created successfully")
+  threadSuccess (result: any) {
+    alert('Thread created successfully')
     this.$router.push(`/categories/${this.id}/`)
   }
 
-  threadError(error: any) {
+  threadError (error: any) {
     alert(error)
   }
 
-  render(h: any) {
+  render (h: any) {
     return (
       <NewThreadTemplate
         data={{
@@ -81,33 +81,33 @@ export default class NewThread extends Vue {
         }}
       >
         {!this.preview ? (
-          <div class="pure-form pure-form-stacked pure-u-1">
+          <div class='pure-form pure-form-stacked pure-u-1'>
             <fieldset>
               <input
-                class="pure-input-1"
-                id="title"
-                placeholder="Title"
-                type="text"
+                class='pure-input-1'
+                id='title'
+                placeholder='Title'
+                type='text'
                 vModel={this.title}
               />
             </fieldset>
-            <fieldset class="pure-1 thread-comment-box">
+            <fieldset class='pure-1 thread-comment-box'>
               <textarea
-                class="textarea"
-                id="postBody"
-                resize="false"
+                class='textarea'
+                id='postBody'
+                resize='false'
                 vModel={this.postBody}
               />
             </fieldset>
             <button
-              class="pure-button pure-button-primary pure-input-1"
+              class='pure-button pure-button-primary pure-input-1'
               onClick={() => this.mutate()}
             >
               create Thread
             </button>
           </div>
         ) : (
-          <section class="markdown-style -padding">
+          <section class='markdown-style -padding'>
             <vue-markdown>
               ## {this.title}
             </vue-markdown>

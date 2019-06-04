@@ -5,13 +5,13 @@ import {
   Getter
 } from 'vuex-class'
 import ThreadsTemplate from '../templates/pages/threads'
-let Query = new Queries()
+const Query = new Queries()
 
 @Component({
   apollo: {
     category: {
       query: Query.category,
-      variables() {
+      variables () {
         return {
           id: this.id
         }
@@ -19,9 +19,9 @@ let Query = new Queries()
       result (result) {
         this.$data.loading = false
       },
-      error(error) {
+      error (error) {
         this.loading = false
-        console.error("We've got an error!", error)
+        console.log(`We've got an error!`, error)
       },
       fetchPolicy: 'network-only'
     }
@@ -31,15 +31,15 @@ let Query = new Queries()
   }
 })
 export default class Threads extends Vue {
-  @Getter("getLogin") getLogin: any
+  @Getter('getLogin') getLogin: any
   loading: boolean = true
   category: any
 
-  render(h: any) {
+  render (h: any) {
     if (this.category) {
       return (
         <ThreadsTemplate
-          class="section"
+          class='section'
           data={{
             ...this.$data,
             getLogin: this.getLogin,
