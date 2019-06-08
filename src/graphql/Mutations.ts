@@ -2,14 +2,14 @@ import gql from 'graphql-tag'
 
 export default class Mutations {
   // Users
-  authenticate () {
+  public authenticate () {
     return gql`
       mutation authenticate($email: String!, $password: String!) {
         authenticate(email: $email, password: $password)
       }
     `
   }
-  createUser () {
+  public createUser () {
     return gql`
       mutation createUser($name: String!, $username: String!, $email: String!, $password: String!) {
         createUser(
@@ -27,7 +27,7 @@ export default class Mutations {
   }
 
   // Categories
-  createCategory () {
+  public createCategory () {
     return gql`
       mutation createCategory($title: String!) {
         createCategory(title: $title) {
@@ -39,7 +39,7 @@ export default class Mutations {
   }
 
   // Threads
-  createThread () {
+  public createThread () {
     return gql`
       mutation createThread($title: String!, $id: ID!, $body: String!) {
         createThread(title: $title, categoryId: $id, body: $body) {
@@ -51,7 +51,7 @@ export default class Mutations {
   }
 
   // Posts
-  createPost () {
+  public createPost () {
     return gql`
       mutation ccreatePost($body: String!, $id: ID!) {
         createPost(body: $body, threadId: $id) {

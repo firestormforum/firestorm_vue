@@ -10,5 +10,5 @@ new Vue({
   router,
   apolloProvider,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app')

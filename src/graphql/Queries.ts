@@ -1,9 +1,9 @@
 import gql from 'graphql-tag'
 
 export default class Queries {
-  //Categories
+  // Categories
 
-  categories () {
+  public categories () {
     return gql`query categories($page: Int!, $perPage: Int!) {
       categories(pagination: {page: $page, perPage: $perPage}) {
         totalPages
@@ -19,7 +19,7 @@ export default class Queries {
     }`
   }
 
-  category () {
+  public category () {
     return gql`
       query category($id: ID!) {
         category(id: $id) {
@@ -39,7 +39,7 @@ export default class Queries {
 
   // Threads
 
-  threads () {
+  public threads () {
     return gql` query threads {
       threads {
         id
@@ -55,7 +55,7 @@ export default class Queries {
     }`
   }
 
-  thread () {
+  public thread () {
     return gql`
       query thread($id: ID!) {
         thread(id: $id) {
@@ -86,7 +86,7 @@ export default class Queries {
 
   // Posts
 
-  posts () {
+  public posts () {
     return gql`
       query posts {
         posts {
@@ -108,7 +108,7 @@ export default class Queries {
     `
   }
 
-  post () {
+  public post () {
     return gql`
       query post($id: ID!) {
         post(id: $id) {

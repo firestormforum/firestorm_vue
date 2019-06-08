@@ -3,7 +3,11 @@ import Component from 'vue-class-component'
 
 @Component({
   name: 'categories',
-  template: require('../templates/layouts/categories.pug')
+  render (h) {
+    return (
+      <router-view/>
+    )
+  }
 })
 export default class Categories extends Vue {
 }
