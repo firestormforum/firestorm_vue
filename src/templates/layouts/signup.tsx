@@ -34,10 +34,10 @@ export default ({ props }: any) => {
           type='text'
           vModel={props.username}
         />
-        <button class='pure-button pure-button-primary pure-input-1' onClick={() => props.methods.signup(props.name, props.email, props.password, props.username)}>
-          Sign up
-        </button>
       </div>
+      <button class='pure-button pure-button-primary pure-input-1' onClick={() => props.methods.signup(props.name, props.email, props.password, props.username)}>
+        Sign up
+      </button>
     </main>
   )
 }
