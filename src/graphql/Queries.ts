@@ -76,7 +76,6 @@ export default class Queries {
             user {
               id
               name
-              email
             }
           }
         }
@@ -99,7 +98,6 @@ export default class Queries {
           user {
             id
             name
-            email
           }
           insertedAt
           updatedAt
@@ -125,7 +123,6 @@ export default class Queries {
           user {
             id
             name
-            email
           }
           insertedAt
           updatedAt
