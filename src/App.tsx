@@ -7,15 +7,7 @@ import {
 import Toolbar from './components/Toolbar'
 
 @Component({
-  name: 'app',
-  render (h) {
-    return (
-      <div id='app'>
-        <Toolbar oculted />
-        <router-view />
-      </div>
-    )
-  }
+  name: 'app'
 })
 export default class App extends Vue {
   @Getter('getLogin') getLogin: any
@@ -40,5 +32,14 @@ export default class App extends Vue {
     onUrlChange (newVal: any) {
       this.checkLogin()
     }
+
+  public render (h: any) {
+    return (
+      <div id='app'>
+        <Toolbar oculted />
+        <router-view />
+      </div>
+    )
+  }
 
 }
