@@ -26,7 +26,7 @@ export default ({ props }: any) => {
         id='title'
         placeholder='Title'
         type='text'
-        vModel={props.title}
+        onChange={(event: any) => {props.title = event.target.value}}
       />
       <button class='pure-button pure-button-primary' onClick={() => mutate()}>
         Create Category
