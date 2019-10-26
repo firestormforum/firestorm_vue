@@ -20,7 +20,6 @@ export default class Mutations {
         ) {
           id
           username
-          email
         }
       }
     `

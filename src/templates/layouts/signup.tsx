@@ -11,28 +11,28 @@ export default ({ props }: any) => {
           id='name'
           placeholder='Name'
           type='text'
-          vModel={props.name}
+          onChange={(event: any) => {props.name = event.target.value}}
         />
         <input
           class='input pure-input-1'
           id='email'
           placeholder='Email'
           type='email'
-          vModel={props.email}
+          onChange={(event: any) => {props.email = event.target.value}}
         />
         <input
           class='input pure-input-1'
           id='password'
           placeholder='Password'
           type='password'
-          vModel={props.password}
+          onChange={(event: any) => {props.password = event.target.value}}
         />
         <input
           class='input pure-input-1'
           id='username'
           placeholder='Username'
           type='text'
-          vModel={props.username}
+          onChange={(event: any) => {props.username = event.target.value}}
         />
       </div>
       <button class='pure-button pure-button-primary pure-input-1' onClick={() => props.methods.signup(props.name, props.email, props.password, props.username)}>

@@ -9,16 +9,16 @@ export default ({ props }: any) => {
         <input
           class='input pure-input-1'
           id='email'
-          placeholder=''
+          placeholder='Email'
           type='email'
-          vModel={props.email}
+          onChange={(event: any) => {props.email = event.target.value}}
         />
         <input
           class='input pure-input-1'
           id='password'
           placeholder='Password'
           type='password'
-          vModel={props.password}
+          onChange={(event: any) => {props.password = event.target.value}}
         />
         <span class='pure-form-message'>
           <routerLink to='/signup'>Create account</routerLink>
