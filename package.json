@@ -52,7 +52,7 @@
     "howler": "^2.1.2",
     "http-proxy-agent": "^2.1.0",
     "lodash.camelcase": "^4.3.0",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "portfinder": "1.0.21",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
